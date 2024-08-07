@@ -1,11 +1,61 @@
+import { useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import Textbox from './components/Textbox';
+import Alert from './components/Alert';
+import About from './components/About'
+import {BrowserRouter, Routes, Route } from 'react-router-dom';
 // import Textform from './components/childComp';
 // import ParentComp from './components/parentComp';
 
 function App() {
+  
+  const [mode, setMode]=useState('light')
+  const [check, setCheck] = useState(true)
+  const [theme, setTheme] = useState(null)
+  const [alert, setAlert] = useState(null)
+  const showAlert=(message,type)=>{
+    setAlert({
+      msg: message,
+      type:type
+    })
+    setTimeout(() => {
+      setAlert(null)
+    }, 2000);
+  }
+  const removeBodyClasses=()=>{
+    document.body.classList.remove('bg-danger','bg-success','bg-warning','bg-#00244a','bg-white')
+  }
+  
+  const togglemode=(cls)=>{
+    removeBodyClasses();
+    // console.log(cls)
+    if(cls==='danger' || cls==='warning' || cls==='success' || cls==='white'){
+    document.body.classList.add('bg-'+cls)
+    showAlert("Theme Changed!","success")
+    setCheck(true)
+    setTheme(cls)
+    }
+    else if(mode==='light'){
+      setMode('dark');
+      document.body.style.backgroundColor='#00244a'
+      showAlert("Dark mode has been enabled!","success")
+      // document.title="TextEditor- DarkMode"
+      setCheck(false)
+    }
+    else{
+      setMode('light');
+      document.body.style.backgroundColor='white'
+      showAlert("Light mode has been enabled!","success")
+      // document.title="TextEditor- Home"
+      setCheck(false)
+
+    }
+  }
   return (
+    
+    
+    <BrowserRouter>
     <div className="App">
 
       {/* Tips and information given by sir on last day  */}
@@ -48,14 +98,24 @@ https://www.makeuseof.com/create-protected-route-in-react/
 
 
       {/* <ParentComp /> */}
-      <Navbar title="TextEditor" abouttext="About Us" />
+      <Navbar title="TextEditor" abouttext="About Us" mode={mode} togglemode={togglemode} theme={theme} check={check}/>
+      <Alert alert={alert}/>
       <div className="container" my-3>
-        <Textbox title="Enter text below:" />
+      <Routes>
+          <Route exact path="/about" element={<About />}>
+          {/* <About/> */}
+          </Route>
+          <Route exact path="/" element={<Textbox title="Enter text below:" mode={mode} theme={theme} check={check} showAlert={showAlert} />}>
+        {/* <Textbox title="Enter text below:" mode={mode} showAlert={showAlert}/> */}
+          </Route>
+        </Routes>
       </div>
-      
-
     </div>
-  );
+    </BrowserRouter>
+
+    
+    
+  )
 }
 
 export default App;
