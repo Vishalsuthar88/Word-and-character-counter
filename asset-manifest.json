@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Word-and-character-counter/static/css/main.f855e6bc.css",
+    "main.js": "/Word-and-character-counter/static/js/main.787f91a1.js",
+    "index.html": "/Word-and-character-counter/index.html",
+    "main.f855e6bc.css.map": "/Word-and-character-counter/static/css/main.f855e6bc.css.map",
+    "main.787f91a1.js.map": "/Word-and-character-counter/static/js/main.787f91a1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.787f91a1.js"
+  ]
+}
