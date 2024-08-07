@@ -71,12 +71,12 @@ export default function Textbox(props) {
     const [copyText,setCopyText]=useState("Copy Text")
 
     return (
-        <div className='container ' style={{color : props.mode==='dark'? 'white' : 'black'}}>
+        <div className='container ' style={{color :props.check===true?'black': (props.mode==='dark'? 'white' : 'black')}}>
             <h1>{props.title}</h1>
             <div className="mb-3"  >
            
-                <textarea className={`form-control bg-${props.check===true? props.theme : (props.mode==='dark'? '#00244a' : 'white')}`}  value={text} onChange={handleOnChange} id="Box" rows="8" style={{
-                    color: props.mode==='dark'? 'white' : 'black'}}></textarea>
+                <textarea className={`form-control bg-${ props.theme }`}  value={text} onChange={handleOnChange} id="Box" rows="8" style={{
+                    color :props.check===true?'black': (props.mode==='dark'? 'white' : 'black')}}></textarea>
             </div>
             <button disabled={text.length===0} className='btn btn-primary mx-2 my-1'  onClick={handleLoClick}>Convert to Lowercase</button>
             <button disabled={text.length===0} className='btn btn-primary mx-2 my-1'  onClick={handleUpClick}>Convert to Uppercase</button>

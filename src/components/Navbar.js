@@ -31,7 +31,7 @@ const Navbar = props => {
                             <div className="bg-warning rounded mx-2 border border-dark" onClick={()=>{props.togglemode('warning')}} style={{height:'30px',width:'30px',cursor:'pointer'}}></div>
                         </div>
 
-                    <div className={`form-check form-switch text-${props.mode==='light'? 'dark' : 'light'}`}>
+                    <div className='form-check form-switch'  style={{color :props.check===true?'black': (props.mode==='dark'? 'white' : 'black')}}>
                         <input className="form-check-input" onClick={()=>{props.mode==='light'?props.togglemode('#00244a'):props.togglemode('light')}} type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
                         <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable {props.mode==='light'? 'dark' : 'light'} Mode</label>
                       </div>
